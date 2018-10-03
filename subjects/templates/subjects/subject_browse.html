@@ -1,0 +1,53 @@
+{% extends "subjects/index.html" %}
+
+{% block title %}- Browse Subjects{% endblock %}
+
+{% block tab_browse %}In{% endblock %}
+
+{% block content %}
+	{% if browse_nav %}
+    <div class="subdiv">Select the UNTLBS subject.</div>
+    <div class='subdiv'>
+		<input name='subject' type='text' size='57' value='{{ browse_string }}'>
+		</div>
+	{% endif %}
+
+	{% if browse_nav %}
+		{% ifnotequal browse_len 1 %}
+			<div class="subdiv">Subject Structure (click previous subjects to go back)</div>
+		{% else %}
+			<div class="subdiv">Subject Structure (click Main to go back to the original browse structure)</div>
+		{% endifnotequal %}
+		&nbsp;<span class="browse"><a href='{% url 'main_browse' %}'>Main</a> ></span>
+		{% for value in browse_nav %}
+				{% if forloop.last %}
+					<span class="subject">{{ value.name }}</span>
+				{% else %}
+					<span class="browse"><a href='{% url 'browse' value.id %}'>{{ value.name }}</a> ></span>
+				{% endif %}
+		{% endfor %}
+		<br/><br/>
+	{% else %}
+	<span class="subject">Main</span>
+	{% endif %}
+
+	{% if browse_list %}
+		<div class="subdiv">Click a subject to view its subcategories.</div>
+		{% for value in browse_list %}
+    	<div class='subdiv'>
+					<div style="float:left">
+							>&nbsp;<a href='{% url 'browse' value.id %}'>{{ value.name }}</a>&nbsp;
+					</div>
+					<div class="list">
+							<a style="display:block;" href="/"><span class="viewDetails">(View Details)</span></a>
+							{% with value as detail %}
+							{% include "subjects/detail.html" %}
+							{% endwith %}
+					</div>
+			</div>
+   	{% endfor %}
+	{% else %}
+		<div class='subdiv'>  There are no subcategories.</div>
+	{% endif %}
+
+{% endblock %}

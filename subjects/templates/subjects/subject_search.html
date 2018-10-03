@@ -1,0 +1,36 @@
+{% extends "subjects/index.html" %}
+
+{% block title %}- Search Subjects{% endblock %}
+
+{% block tab_search %}In{% endblock %}
+
+{% block content %}
+<div class="subdiv">Search for a UNTLBS Subject.<br/><br/>
+<form method="GET">
+{{ form.q }}&nbsp;<input type="submit" value="Search"></form></div>
+<br/>
+{% if search_results %}
+	<div class="subdiv">
+		Search Result{% ifnotequal results_len 1 %}s{% endifnotequal %}:
+	</div>
+	{% for value in search_results %}
+		<div class="list">
+				<a style="display:block;" href="/">&nbsp;&nbsp;<span class="subject">{{ value.hyphenated }}</span>&nbsp;<span class="viewDetails">(View Details)</span></a>
+				{% with value.subject_object as detail %}
+				{% include "subjects/detail.html" %}
+				{% endwith %}
+		</div>
+		<div class="subdiv">
+				<input name='subject' type='text' size='57' value='{{ value.hyphenated }}'/>
+		</div>
+	{% endfor %}
+{% else %}
+	{% if query_string %}
+		<div class="subdiv">No results found.</div>
+	{% else %}
+		<div class="subdiv">Please enter a search term.</div>
+	{% endif %}
+{% endif %}
+
+
+{% endblock %}

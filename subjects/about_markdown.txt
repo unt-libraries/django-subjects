@@ -1,0 +1,45 @@
+
+About the UNTL-BS
+-----------------
+
+The University of North Texas Libraries Browse-Subjects (UNTL-BS) is a controlled vocabulary used in the Portal to Texas History.  The subjects are arranged hierarchically and used to facilitate browsing in the Portal.  New subjects are added whenever there are enough items to warrant it and are usually based on suggestions by metadata creators and editors.
+
+FAQs
+----
+
+### How can I find UNTL-BS terms in this subject selector?
+
+The UNTL-BS Subject Selector has several different options for finding subject terms.  Across the top of the window, there are five tabs: Browse, List, Search, About, and Admin.  The first three can be used to find terms in the following ways:
+
+Browse - This is the tab that opens initially and shows the search terms in a hierarchy so that you can see the subheadings under an initial top-level term and get more specific until you find the most useful term.
+
+List - This tab displays all of the terms currently in the UNTL-BS in alphabetical order.
+
+Search - This tab allows you to search for keywords; when you 'search' the system will attempt to find a UNTL-BS subject term matching the keyword that you entered into the search box.
+
+### How should subjects be entered in Portal records?
+
+Guidelines about entering UNTL-BS terms in records can be found here:
+
+[UNTL-BS Guidelines](http://www.library.unt.edu/digitalprojects/metadata/elements/subject-1#unt-libraries-browse-subjects-1)
+
+### How many UNTL-BS terms should a record have?
+
+There is no limit on the number of UNTL-BS terms you can put in a record, however, every record in the Portal should have at least one (so that it will be browse-able) and terms should only be included if they are useful for finding the item.  For example, it would not make sense to include the term 'Social Life and Customs - Clothing' for a photograph of a person unless his/her clothing was somehow significant (a uniform, native dress, costume, etc.).
+
+### Does it matter how the terms are punctuated?
+
+Yes.  Since the UNTL-BS is a controlled vocabulary, only terms that are punctuated correctly register as 'valid' by the system.  Each part of the subject is separated by space dash space (e.g. Sports and Recreation - Riding - Bulls).
+
+### Can I copy and paste the terms?
+
+Yes.  If you find a term in the "Search" or "Browse" tabs, the subject string will appear in a text box so that you can copy it.  (The text box is at the top of the window in the "Browse" tab and beneath search results in the "Search" tab.)
+
+### Can I suggest new terms?
+
+Yes. See the contact information below.
+
+Contact
+-------
+
+If you have questions or problems, or to suggest additional UNTL-BS subjects, contact Hannah Tarver (hannah.tarver@unt.edu).

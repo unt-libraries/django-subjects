@@ -1,0 +1,10 @@
+{% extends "subjects/index.html" %}
+{% block tabs %}
+<h3 class="Tab">
+      <span class="Tab{% block tab_add %}Out{% endblock %}"><a href="{% url 'admin_main_add' %}">Add</a></span>
+      <span class="Tab{% block tab_modify %}Out{% endblock %}"><a href="{% url 'admin_main_modify' %}">Modify</a></span>
+      <span class="Tab{% block tab_delete %}Out{% endblock %}"><a href="{% url 'admin_main_delete' %}">Delete</a></span>
+      <span class="TabOut"><a href="{% url 'main_browse' %}">User</a></span>
+      <span class="TabOut" style="position:absolute;right:20px;"><a href="{% url 'logout' %}">Logout</a></span>
+</h3>
+{% endblock %}

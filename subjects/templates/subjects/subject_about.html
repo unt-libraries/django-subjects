@@ -1,0 +1,15 @@
+{% extends "subjects/index.html" %}
+
+{% load subjects_tags %}
+
+{% block title %}- About{% endblock %}
+
+{% block tab_about %}In{% endblock %}
+
+{% block content %}
+<div class="subdiv">
+
+{{ about_markdown|markdown }}
+</div>
+
+{% endblock %}

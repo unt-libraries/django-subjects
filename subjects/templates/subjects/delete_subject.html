@@ -1,0 +1,74 @@
+{% extends "subjects/admin_index.html" %}
+
+{% block title %}- Delete Subjects{% endblock %}
+
+{% block tab_delete %}In{% endblock %}
+
+{% block content %}
+	{% ifequal browse_list "Deleted" %}
+		{% ifnotequal browse_len 1 %}
+			<div class="subdiv">Subject Structure (click previous subjects to go back)</div>
+		{% else %}
+			<div class="subdiv">Subject Structure (click Main to go back to the original browse structure)</div>
+		{% endifnotequal %}
+		&nbsp;<span class="browse"><a href='{% url 'admin_main_delete' %}'>Main</a> ></span>
+		{% for value in browse_nav %}
+
+			{% if forloop.last %}
+
+				{% if child_error %}
+	 	    	{% ifequal child_error 1 %}
+						<div class="subdiv">"<span style="color:#368237;">{{ value.name }}</span>" could not delete subject: subject has dependent subjects.</div>
+					{% endifequal %}
+					{% ifequal child_error 2 %}
+    				<br/><br/> <div class="subdiv">"<span style="color:red;">{{ value.name }}</span>" Deleted.</div>
+					{% endifequal %}
+				{% endif %}
+
+			{% else %}
+				<span class="browse"><a href='{% url 'admin_delete' value.id %}'>{{ value.name }}</a> ></span>
+			{% endif %}
+		{% endfor %}
+	{% else %}
+
+		{% if browse_nav %}
+			{% ifnotequal browse_len 1 %}
+				<div class="subdiv">Subject Structure (click previous subjects to go back)</div>
+			{% else %}
+				<div class="subdiv">Subject Structure (click Main to go back to the original browse structure)</div>
+			{% endifnotequal %}
+			&nbsp;<span class="browse"><a href='{% url 'admin_main_delete' %}'>Main</a> ></span>
+			{% for value in browse_nav %}
+					{% if forloop.last %}
+						<span class="subject">{{ value.name }}</span>
+					{% else %}
+						<span class="browse"><a href='{% url 'admin_delete' value.id %}'>{{ value.name }}</a> ></span>
+					{% endif %}
+			{% endfor %}
+			<br/><br/>
+		{% else %}
+		<span class="subject">Main</span>
+		{% endif %}
+
+		{% if browse_list %}
+			<div class="subdiv">Click a subject to view its subcategories.</div>
+   		{% for value in browse_list %}
+    		<div class='subdiv'>
+						<div style="float:left">
+								>&nbsp;<a href='{% url 'admin_delete' value.id %}'>{{ value.name }}</a>&nbsp;<a class="delete" href='{% url 'admin_delete_subject' value.id %}'><span class="viewDetails" style="color: red;">(Delete Subject)</span></a>&nbsp;
+						</div>
+						<div class="list">
+								<a style="display:block;" href="/"><span class="viewDetails">(View Details)</span></a>
+								{% with value as detail %}
+								{% include "subjects/detail.html" %}
+								{% endwith %}
+						</div>
+				</div>
+   		{% endfor %}
+
+		{% else %}
+			<div class='subdiv'>  There are no subcategories.</div>
+		{% endif %}
+	{% endifequal %}
+
+{% endblock %}

@@ -1,0 +1,23 @@
+{% extends "subjects/index.html" %}
+
+{% block title %}- List Subjects{% endblock %}
+
+{% block tab_list %}In{% endblock %}
+
+{% block content %}
+<div class="subdiv">Click a subject to see more details.</div>
+<br/>
+
+    {% for value in viewall_list %}
+        <div class="subdiv">
+					<div class="list">
+						<a style="display:block;" href="/">{{ value.hyphenated }}</a>
+						{% with value.subject_object as detail %}
+						{% include "subjects/detail.html" %}
+						{% endwith %}
+					</div>
+					
+				</div>
+    {% endfor %}
+{{ number }}
+{% endblock %}

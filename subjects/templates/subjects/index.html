@@ -1,0 +1,51 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"
+"http://www.w3.org/TR/html4/loose.dtd">
+<html lang="en">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1">
+		<link rel="stylesheet" href="{{ MEDIA_URL }}subjects/css/subjects.css" type="text/css">
+		<script type="text/javascript" src="{{ MEDIA_URL }}subjects/scripts/jquery-1.2.6.pack.js"></script>
+		<script type="text/javascript">
+    $(document).ready(function() {
+				$('div.list> div').hide();
+				$('div.list> a').click(function(){
+					var $nextDiv = $(this).next();
+					var $visibleSiblings = $nextDiv.siblings('div:visible');
+							if ($visibleSiblings.length ) {
+									$visibleSiblings.slideUp('fast', function() {
+        							$nextDiv.slideToggle('fast');
+									});
+							}
+							else {
+									$nextDiv.slideToggle('fast');
+							}
+					return false;
+				});
+				$('input.add').click(function(){
+					var x = window.confirm("Are you sure you want to Add this Subject?")
+					if(!x){
+						return false;
+					}
+				});
+				$('a.delete').click(function(){
+					var x = window.confirm("Are you sure you want to Delete this Subject?")
+					if(!x){
+						return false;
+					}
+				});
+		});
+    </script>
+    <title>UNTL Subject Selector{% block title %}{% endblock %}</title>
+</head>
+<body>
+        {% block tabs %}<h3 class="Tab">
+            <span class="Tab{% block tab_browse %}Out{% endblock %}"><a href="{% url 'main_browse' %}">Browse</a></span>
+	    			<span class="Tab{% block tab_list %}Out{% endblock %}"><a href="{% url 'list' %}">List</a></span>
+            <span class="Tab{% block tab_search %}Out{% endblock %}"><a href="{% url 'search_subjects' %}">Search</a></span>
+            <span class="Tab{% block tab_about %}Out{% endblock %}"><a href="{% url 'about_subjects' %}">About</a></span>
+            <span class="Tab{% block tab_admin %}Out{% endblock %}"><a href="{% url 'admin_main_add' %}">Admin</a></span>
+        </h3>{% endblock %}
+
+    {% block content %}{% endblock %}
+</body>
+</html>

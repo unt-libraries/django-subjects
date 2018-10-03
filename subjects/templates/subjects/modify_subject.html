@@ -1,0 +1,71 @@
+{% extends "subjects/admin_index.html" %}
+
+{% block title %}- Modify Subject{% endblock %}
+{% block tab_modify %}In{% endblock %}
+{% block content %}
+	{% if modified %}
+		{% ifnotequal browse_len 1 %}
+			<div class="subdiv">Subject Structure (click previous subjects to go back)</div>
+		{% else %}
+			<div class="subdiv">Subject Structure (click Main to go back to the original browse structure)</div>
+		{% endifnotequal %}
+		&nbsp;<span class="browse"><a href='{% url 'admin_main_modify' %}'>Main</a> ></span>
+		{% for value in browse_nav %}
+				<span class="browse"><a href='{% url 'admin_modify' value.id %}'>{{ value.name }}</a> ></span>
+		{% endfor %}
+		<br/><br/> <div class="subdiv">"<span style="color:#b14103;">{{ modified.name }}</span>" Modified</div>
+	{% else %}
+		{% if browse_nav %}
+			{% ifnotequal browse_len 1 %}
+				<div class="subdiv">Subject Structure (click previous subjects to go back)</div>
+			{% else %}
+				<div class="subdiv">Subject Structure (click Main to go back to the original browse structure)</div>
+			{% endifnotequal %}
+			&nbsp;<span class="browse"><a href='{% url 'admin_main_modify' %}'>Main</a> ></span>
+			{% for value in browse_nav %}
+					{% if forloop.last %}
+						<span class="subject">{{ value.name }}</span>
+					{% else %}
+						<span class="browse"><a href='{% url 'admin_modify' value.id %}'>{{ value.name }}</a> ></span>
+					{% endif %}
+			{% endfor %}
+			<br/><br/>
+		{% else %}
+		<span class="subject">Main</span>
+		{% endif %}
+
+		{% if browse_list %}
+			<div class="subdiv">Click a subject to view its subcategories.</div>
+	   	{% for value in browse_list %}
+	    	<div class='subdiv'>
+					<div style="float:left">
+							>&nbsp;<a href='{% url 'admin_modify' value.id %}'>{{ value.name }}</a>&nbsp;
+					</div>
+					<div class="list">
+							<a style="display:block;" href="/"><span class="viewDetails">(View Details)</span></a>
+							{% with value as detail %}
+							{% include "subjects/detail.html" %}
+							{% endwith %}
+					</div>
+				</div>
+	   	{% endfor %}
+		{% else %}
+			<div class='subdiv'>  There are no subcategories.</div>
+		{% endif %}
+		<br/>
+
+		{% if selected_subject %}
+  		<span class="subject">Modify {{ selected_subject.name }}</span><br/>
+	    <div class="subdiv">
+				<form method="POST">{% csrf_token %}
+	      	Keywords:<br/>
+	      	{{ form.keywords }}<br/>
+	      	Notes:<br/>
+	      	{{ form.notes }}<br/><br/>
+	      	<input type="submit" value="Modify Subject">
+	    	</form>
+	  	</div>
+		{% endif %}
+	{% endif %}
+
+{% endblock %}

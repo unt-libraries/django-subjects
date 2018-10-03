@@ -1,0 +1,41 @@
+{% extends "subjects/index.html" %}
+
+{% block tabs %}
+<h3 class="Tab">
+    <span class="TabOut"><a href="{% url 'main_browse' %}">User</a></span>
+</h3>
+{% endblock %}
+
+{% block content %}
+
+	<div class="subdiv">
+	    <form method="POST">{% csrf_token %}
+	 	     Username:<br/>
+	  	   {{ form.username }}<br/>
+	   	   Password:<br/>
+	   	   {{ form.password }}<br/><br/>
+	   	   <input type="submit" value="Login"/>
+				 <input type="hidden" name="next" value="{{ next }}"/>
+	    </form>
+	{% if form.has_errors %}
+		<br/><br/>
+		Login invalid.
+	{% else %}
+		{% if user.is_authenticated %}
+			<br/>
+			You don't have permission to:
+			{% if not perms.Subject.delete_subject %}
+				<br/>delete subjects
+			{% endif %}
+			{% if not perms.Subject.change_subject %}
+				<br/>modify subjects
+			{% endif %}
+			{% if not perms.Subject.add_subject %}
+				<br/>add subjects
+			{% endif %}
+		{% endif %}
+
+	{% endif %}
+	</div>
+
+{% endblock %}
