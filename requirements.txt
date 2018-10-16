@@ -1,5 +1,4 @@
 django~=1.6.0
-simplejson==3.16.0
 markdown==3.0.1
 pytest==3.8.2
 pytest-django==2.9.1
