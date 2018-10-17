@@ -35,7 +35,7 @@ Testing
 To manually run the tests with your current version of Python (system or virtual environment):
 
 1. Install the test Requirements:
-       pip install -r requirements/requirements-test.txt
+       pip install -r requirements.txt
 
 2. Set the environment variable pointing to the test settings file:
        export DJANGO_SETTINGS_MODULE=tests.settings
