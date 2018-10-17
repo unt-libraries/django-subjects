@@ -1,0 +1,14 @@
+body{font-family:Arial, Helvetica, sans-serif;}
+        form {display: inline;}
+        a {text-decoration:none;}
+        a:link {color:#000000}
+        a:visited {color:#000000}
+        
+        h3.Tab { border-bottom: 3px solid #e6e6e6; padding-left: 15px; margin-top: 5px; margin-bottom: 15px; }
+        .TabIn { background: #ffffff; padding: 3px 11px 3px 11px; border-left: 1px solid #e6e6e6; border-right: 1px solid #e6e6e6; border-top: 1px solid #e6e6e6; border-bottom: 1px solid #fff; margin-right: 3px; margin-left: 3px; }
+        .TabOut { font-size: 14px; color: #333; background: #e6e6e6; padding: 2px 8px 4px 8px; }
+        .subdiv { background-color:#eaeaea;padding:2px 2px 2px 2px;width: 600px;margin: 5px 5px 5px 5px;}
+        .browse { color:#368237; font-size: 18px;}
+				.browse a{ color:#368237; font-size: 18px;}
+				.subject { font-size: 18px;}
+				.viewDetails { color:#368237; font-size: 14px;}

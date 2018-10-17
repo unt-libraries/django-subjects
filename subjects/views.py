@@ -1,4 +1,5 @@
-import os, simplejson
+import os
+import json
 from operator import itemgetter
 import subjects
 from subjects.models import Subject
@@ -158,4 +159,4 @@ def json_list_subjects(request):
 
     subject_list = sorted(subject_list)
 
-    return HttpResponse(simplejson.dumps(subject_list), mimetype='application/json')
+    return HttpResponse(json.dumps(subject_list), content_type='application/json')
