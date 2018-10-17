@@ -7,14 +7,14 @@ Django Subjects
 About
 -----
 
-Coming soon.
+This Django web application allows for the creation and maintenance of a catalog of subjects.
 
 
 Requirements
 ------------
 
 * Python 2.7
-* Django TBD
+* Django 1.6
 
 
 Installation
@@ -32,7 +32,24 @@ Coming soon.
 Testing
 -------
 
-Coming soon.
+To manually run the tests with your current version of Python (system or virtual environment):
+
+1. Install the test Requirements:
+       pip install -r requirements/requirements-test.txt
+
+2. Set the environment variable pointing to the test settings file:
+       export DJANGO_SETTINGS_MODULE=tests.DJANGO_SETTINGS_MODULE
+
+3. Run the tests:
+       pytest
+
+Alternatively, you can use tox to run the tests in specific environments, along with the flake8 style checker:
+
+1. Install tox on your system:
+       sudo apt-get install tox
+
+2. Run the tox test suite:
+       tox
 
 
 License
