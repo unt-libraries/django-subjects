@@ -1,8 +1,8 @@
-from django.conf.urls import *
+from django.conf.urls import url
 from subjects.views import *
 from subjects.admin_views import *
 
-urlpatterns = patterns('',
+urlpatterns = [
     #subjects/:
     #All of the URLs are prefixed by the projects urls.py by using a
     #statement such as: url(r'^subjects/', include('subjects.urls')),
@@ -36,4 +36,4 @@ urlpatterns = patterns('',
     url(r'^admin/delete/$', subject_delete, name="admin_main_delete"),
     url(r'^admin/delete/(?P<sub_id>\d+)/$', subject_delete, name="admin_delete"),
     url(r'^admin/delete/(?P<sub_id>\d+)/deletion/$', subject_delete, {'sub_delete': True}, name="admin_delete_subject"),
-)
+]
