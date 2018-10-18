@@ -42,6 +42,9 @@ To install this app into your own Django project,
                {'template_name': 'subjects/logout.html'}, name="logout"),
        ]
 
+4. Apply the migrations (from wherever your project's manage.py file is):
+       $ manage.py migrate
+
 
 Developing
 ----------
@@ -51,17 +54,17 @@ you can do so by following these instructions, which will start the test server 
 changes you make through you browser in a local instance of the app.
 
 1. Install the requirements (preferably in a virtual environment):
-       pip install -r requirements.txt
+       $ pip install -r requirements.txt
 
 2. Navigate to the root of the project directory and run the migrations:
-       ./manage.py migrate
+       $ ./manage.py migrate
 
 3. Create a superuser so you can log into the admin interface and add/remove/modify subjects:
-       ./manage.py createsuperuser
+       $ ./manage.py createsuperuser
    Follow the instructions to create the superuser with whatever username, email, and password you wish.
 
 4. Start the test server:
-       ./manage.py runserver
+       $ ./manage.py runserver
    The test server can be viewed from a browser by navigating to the default location: `http://localhost:8000/subjects`
 
 To stop the test server, hit Ctrl-C. You can always start it up again with the command in Step 4.
@@ -73,18 +76,18 @@ Testing
 To manually run the tests with your current version of Python (system or virtual environment):
 
 1. Install the requirements:
-       pip install -r requirements.txt
+       $ pip install -r requirements.txt
 
 2. Run the tests:
-       pytest
+       $ pytest
 
 Alternatively, you can use tox to run the tests in specific environments, along with the flake8 style checker:
 
 1. Install tox on your system:
-       sudo apt-get install tox
+       $ sudo apt-get install tox
 
 2. Run the tox test suite:
-       tox
+       $ tox
 
 
 License
