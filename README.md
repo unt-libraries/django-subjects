@@ -14,19 +14,57 @@ Requirements
 ------------
 
 * Python 2.7
-* Django 1.6
+* Django 1.10 - 1.11
 
 
 Installation
 ------------
 
-Coming soon.
+To install this app into your own Django project,
+
+1. Install the app from the git repository:
+       $ pip install git+git://github.com/unt-libraries/django-subjects.git
+
+2. Add to your INSTALLED_APPS in your Django project's settings:
+       INSTALLED_APPS = [
+           ...
+           subjects
+       ]
+
+3. Include subjects' URLs in your project's urls.py file:
+       urlpatterns = [
+           ...
+           url(r'^admin/', admin.site.urls),
+           url(r'^subjects/', include('subjects.urls')),
+           url(r'^accounts/login/$', auth.views.login,
+               {'template_name': 'subjects/login.html'}, name="login"),
+           url(r'^accounts/logout/$', auth.views.logout,
+               {'template_name': 'subjects/logout.html'}, name="logout"),
+       ]
 
 
 Developing
 ----------
 
-Coming soon.
+If you'd like to work on the code or take this app for a test run without setting up a separate Django project,
+you can do so by following these instructions, which will start the test server and allow see the impact of any
+changes you make through you browser in a local instance of the app.
+
+1. Install the requirements (preferably in a virtual environment):
+       pip install -r requirements.txt
+
+2. Navigate to the root of the project directory and run the migrations:
+       ./manage.py migrate
+
+3. Create a superuser so you can log into the admin interface and add/remove/modify subjects:
+       ./manage.py createsuperuser
+   Follow the instructions to create the superuser with whatever username, email, and password you wish.
+
+4. Start the test server:
+       ./manage.py runserver
+   The test server can be viewed from a browser by navigating to the default location: `http://localhost:8000/subjects`
+
+To stop the test server, hit Ctrl-C. You can always start it up again with the command in Step 4.
 
 
 Testing
@@ -34,13 +72,10 @@ Testing
 
 To manually run the tests with your current version of Python (system or virtual environment):
 
-1. Install the test Requirements:
+1. Install the requirements:
        pip install -r requirements.txt
 
-2. Set the environment variable pointing to the test settings file:
-       export DJANGO_SETTINGS_MODULE=tests.settings
-
-3. Run the tests:
+2. Run the tests:
        pytest
 
 Alternatively, you can use tox to run the tests in specific environments, along with the flake8 style checker:
