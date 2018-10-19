@@ -23,7 +23,7 @@ Installation
 To install this app into your own Django project,
 
 1. Install the app from the git repository:
-       $ pip install git+git://github.com/unt-libraries/django-subjects.git
+       $ pip install git+https://github.com/unt-libraries/django-subjects.git
 
 2. Add to your INSTALLED_APPS in your Django project's settings:
        INSTALLED_APPS = [
