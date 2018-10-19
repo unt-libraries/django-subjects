@@ -50,20 +50,25 @@ Developing
 ----------
 
 If you'd like to work on the code or take this app for a test run without setting up a separate Django project,
-you can do so by following these instructions, which will start the test server and allow see the impact of any
-changes you make through you browser in a local instance of the app.
+you can do so by following these instructions, which will run the app with the Django test server.
 
-1. Install the requirements (preferably in a virtual environment):
+1. Clone the git repository:
+       $ git clone https://github.com/unt-libraries/django-subjects.git
+
+2. Navigate into the cloned repository:
+       $ cd django-subjects
+
+3. Install the requirements (preferably in a virtual environment):
        $ pip install -r requirements.txt
 
-2. Navigate to the root of the project directory and run the migrations:
+4. Navigate to the root of the project directory and run the migrations:
        $ ./manage.py migrate
 
-3. Create a superuser so you can log into the admin interface and add/remove/modify subjects:
+5. Create a superuser so you can log into the admin interface and add/remove/modify subjects:
        $ ./manage.py createsuperuser
    Follow the instructions to create the superuser with whatever username, email, and password you wish.
 
-4. Start the test server:
+6. Start the test server:
        $ ./manage.py runserver
    The test server can be viewed from a browser by navigating to the default location: `http://localhost:8000/subjects`
 
@@ -75,18 +80,22 @@ Testing
 
 To manually run the tests with your current version of Python (system or virtual environment):
 
-1. Install the requirements:
+1. Follow steps 1-2 of Developing
+
+2. Install the requirements:
        $ pip install -r requirements.txt
 
-2. Run the tests:
+3. Run the tests:
        $ pytest
 
 Alternatively, you can use tox to run the tests in specific environments, along with the flake8 style checker:
 
-1. Install tox on your system:
+1. Follow steps 1-2 of Developing
+
+2. Install tox on your system:
        $ sudo apt-get install tox
 
-2. Run the tox test suite:
+3. Run the tox test suite:
        $ tox
 
 
