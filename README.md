@@ -92,13 +92,9 @@ Testing
 
 To manually run the tests with your current version of Python (system or virtual environment):
 
-1.  Follow steps 1-2 of Developing
+1.  Follow steps 1-3 of Developing
 
-2.  Install the requirements:
-
-        $ pip install -r requirements.txt
-
-3.  Run the tests:
+2.  Run the tests:
 
         $ pytest
 
