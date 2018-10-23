@@ -1,6 +1,5 @@
 from subjects.models import Subject
-from django.template import RequestContext
-from django.shortcuts import render_to_response
+from django.shortcuts import render
 from django.contrib.auth.decorators import permission_required
 from django.contrib.auth.views import redirect_to_login
 from django import forms
@@ -44,7 +43,8 @@ def subject_add(request, sub_id=0, sub_name=''):
         #if the form doesn't exist yet, create it
         form = AddSubject()
 
-    return render_to_response(
+    return render(
+        request,
         "subjects/add_subject.html",
         {'form' : form,
          'browse_list' : traversal.children_subjects,
@@ -52,7 +52,6 @@ def subject_add(request, sub_id=0, sub_name=''):
          'browse_len' : len(traversal.structured_list),
          'browse_string' : traversal.structured_string,
          'saved' : s},
-        RequestContext(request, {}),
     )
 subject_add = permission_required('subjects.add_subject')(subject_add)
 
@@ -83,7 +82,8 @@ def subject_delete(request, sub_id=0, sub_name='', sub_delete=False):
         else:
             child_err = 1
 
-    return render_to_response(
+    return render(
+        request,
         "subjects/delete_subject.html",
         {'browse_list' : traversal.children_subjects,
          'browse_nav' : traversal.structured_list,
@@ -91,7 +91,6 @@ def subject_delete(request, sub_id=0, sub_name='', sub_delete=False):
          'browse_string' : traversal.structured_string,
          'current_subject' : delete_subject,
          'child_error' : child_err},
-        RequestContext(request, {}),
     )
 subject_delete = permission_required('subjects.delete_subject')(subject_delete)
 
@@ -127,7 +126,8 @@ def subject_modify(request, sub_id=0, sub_name=''):
         #if the form doesn't exist yet, create it, but only if it's not the main level
         form = ModifySubject(data)
 
-    return render_to_response(
+    return render(
+        request,
         "subjects/modify_subject.html",
         {'form' : form,
          'browse_list' : traversal.children_subjects,
@@ -136,6 +136,5 @@ def subject_modify(request, sub_id=0, sub_name=''):
          'browse_string' : traversal.structured_string,
          'selected_subject' : current_subject,
          'modified' : modified_subject},
-        RequestContext(request, {}),
     )
 subject_modify = permission_required('subjects.change_subject')(subject_modify)
