@@ -4,8 +4,7 @@ from operator import itemgetter
 import subjects
 from subjects.models import Subject
 from subjects.traversal import TraversalUtils
-from django.template import RequestContext
-from django.shortcuts import render_to_response
+from django.shortcuts import render
 from django.http import HttpResponse
 from django import forms
 
@@ -26,10 +25,10 @@ def viewall_subjects(request):
 
     subject_list = sorted(subject_list, key=itemgetter('hyphenated'))
 
-    return render_to_response(
+    return render(
+        request,
         "subjects/subject_list.html",
         {'viewall_list' : subject_list},
-        RequestContext(request, {}),
     )
 
 #View: Subjects Browse Tab
@@ -42,13 +41,13 @@ def browse_subjects(request, sub_id=0, sub_name=''):
     traversal = TraversalUtils()
     traversal.create_browse(Subject, sub_id, sub_name)
 
-    return render_to_response(
+    return render(
+        request,
         "subjects/subject_browse.html",
         {'browse_list' : traversal.children_subjects,
          'browse_nav' : traversal.structured_list,
          'browse_len' : len(traversal.structured_list),
          'browse_string' : traversal.structured_string },
-        RequestContext(request, {}),
     )
 
 def detail_subjects(request, sub_id=0):
@@ -57,12 +56,12 @@ def detail_subjects(request, sub_id=0):
     detailed_subject = Subject.objects.get(id__exact=sub_id)
     traversal.get_structured_list(Subject, detailed_subject)
 
-    return render_to_response(
+    return render(
+        request,
         "subjects/subject_detail.html",
         {'subject_name' : traversal.structured_string,
          'keywords' : detailed_subject.keywords,
          'usage' : detailed_subject.notes },
-        RequestContext(request, {}),
     )
 
 #Definition of the SearchForm, used in the Search Tab
@@ -113,13 +112,13 @@ def search_subjects(request):
         form = SearchForm()
 
 
-    return render_to_response(
+    return render(
+        request,
         "subjects/subject_search.html",
         {'form' : form,
          'results_len' : len(query_list),
          'search_results' : query_list,
          'query_string' : search_item},
-        RequestContext(request, {}),
     )
 
 def about_subjects(request):
@@ -135,12 +134,12 @@ def about_subjects(request):
     #Get the file data
     about_markdown = f.read()
 
-    return render_to_response(
+    return render(
+        request,
         "subjects/subject_about.html",
         {
             'about_markdown': about_markdown,
         },
-        RequestContext(request, {}),
     )
 
 def json_list_subjects(request):
