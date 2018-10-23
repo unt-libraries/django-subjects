@@ -1,7 +1,7 @@
 Django Subjects
 ===============
 
-[![Build Status](https://travis-ci.org/unt-libraries/django-subjects.svg?branch=master)](https://travis-ci.org/unt-libraries/django-subjects)
+[![Build Status](https://travis-ci.com/unt-libraries/django-subjects.svg?branch=master)](https://travis-ci.com/unt-libraries/django-subjects)
 
 
 About
