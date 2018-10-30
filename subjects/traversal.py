@@ -37,9 +37,10 @@ class TraversalUtils:
         # SELECT name from widget_subject where lft <= (left traversal) and
         # rght >= (right traversal) order by lft ASC;
         # Grabs all parent objects from the browse_subject all the way up to the root
-        parent_subjects = current_object.objects.filter(lft__lte=browse_subject.lft,
-                                                        rght__gte=browse_subject.rght
-                                                        ).order_by('lft')
+        parent_subjects = current_object.objects.filter(
+            lft__lte=browse_subject.lft,
+            rght__gte=browse_subject.rght
+        ).order_by('lft')
 
         # Creates a list of the parents
         for current_parent in parent_subjects:
@@ -63,16 +64,16 @@ class TraversalUtils:
                 current_subject = subject.objects.get(id__exact=subject_id)
             # Grabs the children objects of the given node
             self.children_subjects = subject.objects.filter(
-                                                            parent__exact=subject_id
-                                                            ).order_by('name')
+                parent__exact=subject_id
+            ).order_by('name')
         elif subject_name != '' and subject_name != None:
             # Grabs the row object of the given node
             current_subject = subject.objects.get(name__exact=subject_name)
             subject_id = current_subject.id
             # Grabs the children objects of the given node
             self.children_subjects = subject.objects.filter(
-                                                            parent__exact=subject_id
-                                                            ).order_by('name')
+                parent__exact=subject_id
+            ).order_by('name')
 
         self.structured_list = []
 
