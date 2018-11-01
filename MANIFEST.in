@@ -1,5 +1,0 @@
-include LICENSE.txt
-include subjects/about_markdown.txt
-include CHANGELOG.md
-recursive-include subjects/templates *
-recursive-include subjects/static *
