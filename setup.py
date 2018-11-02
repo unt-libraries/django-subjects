@@ -3,8 +3,20 @@ from setuptools import setup, find_packages
 
 setup(
     name='django-subjects',
-    version='1.0.0',
+    version='1.0.1',
     packages=find_packages(exclude=['tests']),
+    include_package_data=True,
+    package_data={
+        'subjects': [
+            'templates/subjects/*',
+            'static/subjects/css/*',
+            'static/subjects/scripts/*',
+            'about_markdown.txt',
+        ],
+    },
+    data_files=[
+        ('', ['LICENSE.txt', 'README.md', 'CHANGELOG.md']),
+    ],
     description='Creates and maintains a collection of subjects.',
     long_description='See the home page for more information.',
     install_requires=[
