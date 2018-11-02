@@ -1,6 +1,7 @@
 from django.conf.urls import url
-from subjects.views import *
-from subjects.admin_views import *
+from subjects.views import viewall_subjects, browse_subjects, \
+    search_subjects, about_subjects, json_list_subjects
+from subjects.admin_views import subject_add, subject_delete, subject_modify
 
 urlpatterns = [
     # subjects/:
