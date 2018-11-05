@@ -3,7 +3,7 @@ from django.shortcuts import render
 from django.contrib.auth.decorators import permission_required
 from django.contrib.auth.views import redirect_to_login
 from django import forms
-from django.forms.widgets import *
+from django.forms.widgets import Textarea
 from django.views.decorators.csrf import csrf_protect
 from subjects.traversal import TraversalUtils
 
@@ -71,9 +71,9 @@ def subject_delete(request, sub_id=0, sub_name='', sub_delete=False):
 
     if not request.user.is_authenticated():
         redirect_to_login(request.path, login_url='subject/login')
-    if sub_delete == False:
+    if sub_delete is False:
         traversal.create_browse(Subject, sub_id, sub_name)
-    elif sub_delete == True and sub_id != 0:
+    elif sub_delete is True and sub_id != 0:
         traversal.create_browse(Subject, sub_id, sub_name)
         traversal.children_subjects = "Deleted"
 
@@ -83,7 +83,7 @@ def subject_delete(request, sub_id=0, sub_name='', sub_delete=False):
         delete_subject = ''
     child_err = None
 
-    if sub_delete == True:
+    if sub_delete is True:
         # Delete the subject, if it has no children
         if int(delete_subject.rght) == (int(delete_subject.lft) + 1):
             delete_subject.delete()

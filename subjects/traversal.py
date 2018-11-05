@@ -1,3 +1,6 @@
+from django.db import DatabaseError
+
+
 class TraversalUtils:
     def __init__(self):
         self.structured_list = []
@@ -20,7 +23,7 @@ class TraversalUtils:
             p.rght = right
             try:
                 p.save()
-            except Exception:
+            except (ValueError, DatabaseError):
                 pass
 
         return right+1
@@ -58,7 +61,7 @@ class TraversalUtils:
 
     def create_browse(self, subject, subject_id, subject_name):
 
-        if subject_id != '' and subject_id != None and subject_name == '':
+        if subject_id != '' and subject_id is not None and subject_name == '':
             if subject_id != 0:
                 # Grabs the row object of the given node
                 current_subject = subject.objects.get(id__exact=subject_id)
@@ -66,7 +69,7 @@ class TraversalUtils:
             self.children_subjects = subject.objects.filter(
                 parent__exact=subject_id
             ).order_by('name')
-        elif subject_name != '' and subject_name != None:
+        elif subject_name != '' and subject_name is not None:
             # Grabs the row object of the given node
             current_subject = subject.objects.get(name__exact=subject_name)
             subject_id = current_subject.id
