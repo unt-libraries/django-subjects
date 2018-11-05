@@ -82,7 +82,6 @@ class SearchForm(forms.Form):
 # Args: [sub_id] - id of the given node to browse [sub_name] - name of the given
 # node to browse
 def search_subjects(request):
-
     # create the traversal object
     traversal = TraversalUtils()
 
