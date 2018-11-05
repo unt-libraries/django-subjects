@@ -23,7 +23,7 @@ class TraversalUtils:
             p.rght = right
             try:
                 p.save()
-            except (ValueError, DatabaseError) as e:
+            except (ValueError, DatabaseError):
                 pass
 
         return right+1
