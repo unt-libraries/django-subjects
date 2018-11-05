@@ -1,4 +1,6 @@
 from django.db import IntegrityError
+
+
 class TraversalUtils:
     def __init__(self):
         self.structured_list = []

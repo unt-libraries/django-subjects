@@ -82,7 +82,6 @@ class SearchForm(forms.Form):
 # Args: [sub_id] - id of the given node to browse [sub_name] - name of the given
 # node to browse
 def search_subjects(request):
-    # query_string = ''
 
     # create the traversal object
     traversal = TraversalUtils()
@@ -98,7 +97,6 @@ def search_subjects(request):
             search_item = clean_data['q']
 
             if search_item is not None and search_item != '':
-                # query_structured_list = []
                 query_list = []
 
                 # for all subjects returned using the icontains filter, create a hierarchical
