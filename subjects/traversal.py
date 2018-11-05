@@ -1,4 +1,4 @@
-from django.db import IntegrityError
+from django.db import DatabaseError
 
 
 class TraversalUtils:
@@ -23,7 +23,7 @@ class TraversalUtils:
             p.rght = right
             try:
                 p.save()
-            except IntegrityError:
+            except (ValueError, DatabaseError) as e:
                 pass
 
         return right+1
