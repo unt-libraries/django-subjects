@@ -8,6 +8,9 @@ python:
 env:
     matrix:
         - TOX_ENV=py27-django111
+        - TOX_ENV=py35-django111
+        - TOX_ENV=py36-django111
+        - TOX_ENV=py37-django111
         - TOX_ENV=py37-flake8
 install:
     - pip install tox-travis
