@@ -13,8 +13,8 @@ This Django web application allows for the creation and maintenance of a catalog
 Requirements
 ------------
 
-* Python 2.7
-* Django 1.10 - 1.11
+* Python 2.7, 3.5 - 3.7
+* Django 1.11
 
 
 Installation
