@@ -1,6 +1,12 @@
 Change Log
 ==========
 
+1.x.x
+-----
+
+* Bumped version of Markdown used.
+
+
 1.0.1
 -----
 
