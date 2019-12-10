@@ -20,7 +20,7 @@ setup(
     description='Creates and maintains a collection of subjects.',
     long_description='See the home page for more information.',
     install_requires=[
-        'markdown~=3.0.1',
+        'markdown~=3.1.1',
     ],
     url='https://github.com/unt-libraries/django-subjects',
     author='University of North Texas Libraries',
