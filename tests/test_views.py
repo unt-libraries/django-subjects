@@ -14,9 +14,9 @@ class TestViewallSubjects:
         response = client.get(reverse('list'))
         assert response.status_code == 200
         assert response.templates[0].name == 'subjects/subject_list.html'
-        assert 'sub-1' in response.context['viewall_list'][0]['hyphenated']
-        assert 'sub-1 - sub-1.1' in response.context['viewall_list'][1]['hyphenated']
-        assert 'sub-2' in response.context['viewall_list'][2]['hyphenated']
+        assert response.context['viewall_list'][0]['hyphenated'] == 'sub-1'
+        assert response.context['viewall_list'][1]['hyphenated'] == 'sub-1 - sub-1.1'
+        assert response.context['viewall_list'][2]['hyphenated'] == 'sub-2'
 
 
 @pytest.mark.django_db
@@ -26,27 +26,25 @@ class TestBrowseSubjects:
         s2 = factories.SubjectFactory.create()
         response = client.get(reverse('main_browse'))
         assert response.status_code == 200
+        assert s1 in response.context['browse_list']
+        assert s2 in response.context['browse_list']
         assert response.templates[0].name == 'subjects/subject_browse.html'
-        assert "<a href=\'/subjects/browse/{id}/\'>{name}</a>"\
-               .format(id=s1.id, name=s1.name).encode() in response.content
-        assert "<a href=\'/subjects/browse/{id}/\'>{name}</a>"\
-               .format(id=s2.id, name=s2.name).encode() in response.content
 
     def test_browse_subjects_with_sub_id(self, client):
         sub = factories.SubjectFactory.create()
         response = client.get(reverse('browse', kwargs={'sub_id': sub.id}))
         assert response.status_code == 200
         assert response.templates[0].name == 'subjects/subject_browse.html'
-        assert "<input name=\'subject\' type=\'text\' size=\'57\' value=\'{name}\'>".format(
-               name=sub.name).encode() in response.content
+        assert sub in response.context['browse_nav']
+        assert response.context['browse_string'] == sub.name
 
     def test_browse_subjects_with_sub_name(self, client):
         sub = factories.SubjectFactory.create()
         response = client.get(reverse('browse_sub_name', kwargs={'sub_name': sub.name}))
         assert response.status_code == 200
         assert response.templates[0].name == 'subjects/subject_browse.html'
-        assert "<input name=\'subject\' type=\'text\' size=\'57\' value=\'{name}\'>".format(
-               name=sub.name).encode() in response.content
+        assert sub in response.context['browse_nav']
+        assert response.context['browse_string'] == sub.name
 
 
 @pytest.mark.django_db
@@ -56,9 +54,9 @@ class TestSearchSubjects:
         response = client.get(reverse('search_subjects') + '?q=' + subject.name)
         assert response.status_code == 200
         assert response.templates[0].name == 'subjects/subject_search.html'
-        assert b'Search for a UNTLBS Subject.' in response.content
-        assert '<span class="subject">{name}</span>'\
-               .format(name=subject.name).encode() in response.content
+        assert response.context['search_results'][0]['hyphenated'] == subject.name
+        assert response.context['search_results'][0]['subject_object'] == subject
+        assert response.context['query_string'] == subject.name
 
     def test_empty_search_subjects(self, client):
         response = client.get(reverse('search_subjects'))
@@ -68,22 +66,21 @@ class TestSearchSubjects:
 
 
 @pytest.mark.django_db
-class TestSAboutSubjects:
+class TestAboutSubjects:
     def test_about_subjects(self, client):
         # Get the path of app path and the filename
         app_path = subjects.__path__[0]
         about_filepath = os.path.join(app_path, 'about_markdown.txt')
-        response = client.get(reverse('about_subjects'))
         with open(about_filepath, 'r') as about_file:
             about_markdown = about_file.read()
-
+        response = client.get(reverse('about_subjects'))
         assert response.status_code == 200
         assert response.templates[0].name == 'subjects/subject_about.html'
         assert response.context['about_markdown'] == about_markdown
 
 
 @pytest.mark.django_db
-class TestSJsonListSubjects:
+class TestJsonListSubjects:
     def test_json_list_subjects(self, client):
         s1 = factories.SubjectFactory.create(name='sub-1', parent=0, lft=1, rght=4)
         s2 = factories.SubjectFactory.create(name='sub-2', parent=0, lft=5, rght=8)

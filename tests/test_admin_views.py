@@ -40,15 +40,15 @@ class TestSubjectAdd(TestCase):
     def test_subject_add_post_with_sub_id(self):
         """Test the new subject is added."""
         subject = factories.SubjectFactory.create()
-        subject_2 = factories.SubjectFactory.create()
+        name = 'foo'
         with mock.patch('subjects.admin_views.AddSubject') as mock_form:
             mock_form.return_value.is_valid.return_value = True
-            mock_form.return_value.cleaned_data = {'name': subject_2.name,
-                                                   'keywords': subject_2.keywords,
-                                                   'notes': subject_2.notes}
+            mock_form.return_value.cleaned_data = {'name': name,
+                                                   'keywords': 'test keywords',
+                                                   'notes': 'test notes'}
             response = self.c.post(reverse('admin_add', kwargs={'sub_id': subject.id}))
 
-        assert response.context['saved'].name == subject_2.name
+        assert response.context['saved'].name == name
         assert response.status_code == 200
         assert response.templates[0].name == 'subjects/add_subject.html'
 
@@ -143,4 +143,3 @@ class TestSubjectDelete(TestCase):
         assert response.context['current_subject'].name == subject.name
         assert response.context['browse_list'] == 'Deleted'
         assert response.context['child_error'] == 2
-
