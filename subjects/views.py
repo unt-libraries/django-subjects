@@ -54,21 +54,6 @@ def browse_subjects(request, sub_id=0, sub_name=''):
     )
 
 
-def detail_subjects(request, sub_id=0):
-    # create the traversal object
-    traversal = TraversalUtils()
-    detailed_subject = Subject.objects.get(id__exact=sub_id)
-    traversal.get_structured_list(Subject, detailed_subject)
-
-    return render(
-        request,
-        "subjects/subject_detail.html",
-        {'subject_name': traversal.structured_string,
-         'keywords': detailed_subject.keywords,
-         'usage': detailed_subject.notes},
-    )
-
-
 # Definition of the SearchForm, used in the Search Tab
 class SearchForm(forms.Form):
     # The search box portion of the form
