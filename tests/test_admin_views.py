@@ -1,5 +1,6 @@
 from django.test import Client, TestCase
 from django.contrib.auth.models import User
+from django.core.exceptions import ObjectDoesNotExist
 from django.urls import reverse
 from tests import factories
 import pytest
@@ -78,11 +79,14 @@ class TestSubjectModify(TestCase):
             mock_form.return_value.cleaned_data = {'keywords': 'modified_keyword',
                                                    'notes': 'modified_notes'}
             response = self.c.post(reverse('admin_modify', kwargs={'sub_id': subject.id}))
+        subject.refresh_from_db()
 
         assert response.status_code == 200
         assert response.templates[0].name == 'subjects/modify_subject.html'
         assert response.context['selected_subject'].name == subject.name
         assert response.context['modified'].name == subject.name
+        assert subject.notes == 'modified_notes'
+        assert subject.keywords == 'modified_keyword'
 
 
 @pytest.mark.django_db
@@ -122,16 +126,19 @@ class TestSubjectDelete(TestCase):
 
     def test_subject_delete_sub_delete_with_subcategory(self):
         """Test subject(s) with sub-categories/children do not get deleted."""
-        subject = factories.SubjectFactory.create()
+        subject = factories.SubjectFactory.create(name='test_sub')
         factories.SubjectFactory.create(parent=subject.id)
         response = self.c.get(reverse('admin_delete_subject',
                                       kwargs={'sub_id': subject.id, 'sub_delete': True}))
-
         assert response.status_code == 200
         assert response.templates[0].name == 'subjects/delete_subject.html'
         assert response.context['current_subject'].name == subject.name
         assert response.context['browse_list'] == 'Deleted'
+        # Child_error is set to 1 when the subject has sub categories and isn't deleted.
         assert response.context['child_error'] == 1
+        # Refresh the object and check it is not deleted.
+        subject.refresh_from_db()
+        assert subject.name == 'test_sub'
 
     def test_subject_delete_sub_delete(self):
         """Test subject(s) with no sub-categories/children is/are deleted safely."""
@@ -142,4 +149,8 @@ class TestSubjectDelete(TestCase):
         assert response.templates[0].name == 'subjects/delete_subject.html'
         assert response.context['current_subject'].name == subject.name
         assert response.context['browse_list'] == 'Deleted'
+        # Child_error is set to 2 when the subject is safely deleted.
         assert response.context['child_error'] == 2
+        # Assert subject object is deleted.
+        with self.assertRaises(ObjectDoesNotExist):
+            subject.refresh_from_db()
