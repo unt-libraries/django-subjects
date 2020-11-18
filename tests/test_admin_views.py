@@ -42,13 +42,11 @@ class TestSubjectAdd(TestCase):
         """Test the new subject is added."""
         subject = factories.SubjectFactory.create()
         name = 'foo'
-        with mock.patch('subjects.admin_views.AddSubject') as mock_form:
-            mock_form.return_value.is_valid.return_value = True
-            mock_form.return_value.cleaned_data = {'name': name,
-                                                   'keywords': 'test keywords',
-                                                   'notes': 'test notes'}
-            response = self.c.post(reverse('admin_add', kwargs={'sub_id': subject.id}))
-
+        response = self.c.post(reverse('admin_add', kwargs={'sub_id': subject.id}),
+                               data={'name': name,
+                                     'keywords': 'test keywords',
+                                     'notes': 'test notes'}
+                               )
         assert response.context['saved'].name == name
         assert response.status_code == 200
         assert response.templates[0].name == 'subjects/add_subject.html'
@@ -74,11 +72,10 @@ class TestSubjectModify(TestCase):
     def test_subject_modify_post_with_sub_id(self):
         """Test the subject is modified."""
         subject = factories.SubjectFactory.create()
-        with mock.patch('subjects.admin_views.ModifySubject') as mock_form:
-            mock_form.return_value.is_valid.return_value = True
-            mock_form.return_value.cleaned_data = {'keywords': 'modified_keyword',
-                                                   'notes': 'modified_notes'}
-            response = self.c.post(reverse('admin_modify', kwargs={'sub_id': subject.id}))
+        response = self.c.post(reverse('admin_modify', kwargs={'sub_id': subject.id}),
+                               data={'keywords': 'modified_keyword',
+                                     'notes': 'modified_notes'}
+                               )
         subject.refresh_from_db()
 
         assert response.status_code == 200
