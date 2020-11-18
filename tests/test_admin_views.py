@@ -4,7 +4,6 @@ from django.core.exceptions import ObjectDoesNotExist
 from django.urls import reverse
 from tests import factories
 import pytest
-from unittest import mock
 
 
 @pytest.mark.django_db
