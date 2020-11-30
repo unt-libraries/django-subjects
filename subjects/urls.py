@@ -17,7 +17,7 @@ urlpatterns = [
     url(r'^$', browse_subjects),
     url(r'^browse/$', browse_subjects, name="main_browse"),
     url(r'^browse/(?P<sub_id>\d+)/$', browse_subjects, name="browse"),
-    url(r'^browse/(?P<sub_name>\w+)/$', browse_subjects),
+    url(r'^browse/(?P<sub_name>\w+)/$', browse_subjects, name='browse_sub_name'),
 
     # Search View
     url(r'^search/$', search_subjects, name="search_subjects"),
