@@ -1,4 +1,4 @@
-from django.conf.urls import url
+from django.urls import path
 from subjects.views import viewall_subjects, browse_subjects, \
     search_subjects, about_subjects, json_list_subjects
 from subjects.admin_views import subject_add, subject_delete, subject_modify
@@ -17,7 +17,7 @@ urlpatterns = [
     path('', browse_subjects),
     path('browse/', browse_subjects, name="main_browse"),
     path('browse/<int:sub_id>/', browse_subjects, name="browse"),
-    path('browse/<slug:sub_id>/', browse_subjects, name='browse_sub_name'),
+    path('browse/<slug:sub_name>/', browse_subjects, name='browse_sub_name'),
 
     # Search View
     path('search/', search_subjects, name="search_subjects"),
@@ -37,5 +37,5 @@ urlpatterns = [
     path('admin/delete/', subject_delete, name="admin_main_delete"),
     path('admin/delete/<int:sub_id>/', subject_delete, name="admin_delete"),
     path('admin/delete/<int:sub_id>/deletion/', subject_delete, {'sub_delete': True},
-        name="admin_delete_subject"),
+         name="admin_delete_subject"),
 ]
