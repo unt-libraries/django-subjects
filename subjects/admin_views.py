@@ -29,7 +29,7 @@ class ModifySubject(forms.Form):
 def subject_add(request, sub_id=0, sub_name=''):
     # create the traversal object
     traversal = TraversalUtils()
-    if not request.user.is_authenticated():
+    if not request.user.is_authenticated:
         redirect_to_login(request.path, login_url='subject/login')
     traversal.create_browse(Subject, sub_id, sub_name)
     s = None
@@ -69,7 +69,7 @@ def subject_delete(request, sub_id=0, sub_name='', sub_delete=False):
     # create the traversal object
     traversal = TraversalUtils()
 
-    if not request.user.is_authenticated():
+    if not request.user.is_authenticated:
         redirect_to_login(request.path, login_url='subject/login')
     if sub_delete is False:
         traversal.create_browse(Subject, sub_id, sub_name)
@@ -112,7 +112,7 @@ def subject_modify(request, sub_id=0, sub_name=''):
     # create the traversal object
     traversal = TraversalUtils()
 
-    if not request.user.is_authenticated():
+    if not request.user.is_authenticated:
         redirect_to_login(request.path, login_url='subject/login')
     traversal.create_browse(Subject, sub_id, sub_name)
     modified_subject = current_subject = data = None
