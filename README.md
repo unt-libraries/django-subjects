@@ -13,8 +13,8 @@ This Django web application allows for the creation and maintenance of a catalog
 Requirements
 ------------
 
-* Python 2.7, 3.5 - 3.7
-* Django 1.11
+* Python 3.5 - 3.7
+* Django 2.2
 
 
 Installation
@@ -125,3 +125,4 @@ Contributors
 * [Joey Liechty](https://github.com/yeahdef)
 * [Lauren Ko](https://github.com/ldko)
 * [Gio Gottardi](https://github.com/somexpert)
+* [Madhulika Bayyavarapu](https://github.com/madhulika95b)
