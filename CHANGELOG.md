@@ -5,7 +5,7 @@ Change Log
 -----
 
 * Upgraded to Django 2.2.
-* Dropped supporting Django 1.11 and versions below it.
+* Dropped support for Django 1.11 and versions below it.
 * Dropped Python 2.7 support.
 
 
