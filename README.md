@@ -39,10 +39,10 @@ To install this app into your own Django project,
             ...
             path('admin/', admin.site.urls),
             path('subjects/', include('subjects.urls')),
-            path('accounts/login/', auth.views.login,
-                {'template_name': 'subjects/login.html'}, name="login"),
-            path('accounts/logout/', auth.views.logout,
-                {'template_name': 'subjects/logout.html'}, name="logout"),
+            path('accounts/login/', LoginView.as_view(
+                template_name='subjects/login.html'), name="login"),
+            path('accounts/logout/', LogoutView.as_view(
+                template_name='subjects/logout.html'), name="logout"),
         ]
 
 4.  Apply the migrations (from wherever your project's manage.py file is):
