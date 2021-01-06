@@ -1,9 +1,12 @@
 Change Log
 ==========
 
-1.x.x
+2.0.0
 -----
 
+* Upgraded to Django 2.2.
+* Dropped support for Django 1.11 and versions below it.
+* Dropped Python 2.7 support.
 * Bumped version of Markdown used.
 
 

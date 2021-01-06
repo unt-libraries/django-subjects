@@ -13,8 +13,8 @@ This Django web application allows for the creation and maintenance of a catalog
 Requirements
 ------------
 
-* Python 2.7, 3.5 - 3.7
-* Django 1.11
+* Python 3.5 - 3.7
+* Django 2.2
 
 
 Installation
@@ -37,12 +37,12 @@ To install this app into your own Django project,
 
         urlpatterns = [
             ...
-            url(r'^admin/', admin.site.urls),
-            url(r'^subjects/', include('subjects.urls')),
-            url(r'^accounts/login/$', auth.views.login,
-                {'template_name': 'subjects/login.html'}, name="login"),
-            url(r'^accounts/logout/$', auth.views.logout,
-                {'template_name': 'subjects/logout.html'}, name="logout"),
+            path('admin/', admin.site.urls),
+            path('subjects/', include('subjects.urls')),
+            path('accounts/login/', LoginView.as_view(
+                template_name='subjects/login.html'), name="login"),
+            path('accounts/logout/', LogoutView.as_view(
+                template_name='subjects/logout.html'), name="logout"),
         ]
 
 4.  Apply the migrations (from wherever your project's manage.py file is):
@@ -125,3 +125,4 @@ Contributors
 * [Joey Liechty](https://github.com/yeahdef)
 * [Lauren Ko](https://github.com/ldko)
 * [Gio Gottardi](https://github.com/somexpert)
+* [Madhulika Bayyavarapu](https://github.com/madhulika95b)

@@ -1,13 +1,16 @@
-from django.conf.urls import include, url
-from django.contrib import admin, auth
+from django.urls import path, include
+from django.contrib import admin
+from django.contrib.auth.views import LoginView, LogoutView
 
 admin.autodiscover()
 
 urlpatterns = [
-    url(r'^admin/', admin.site.urls),
-    url(r'^subjects/', include('subjects.urls')),
-    url(r'^accounts/login/$', auth.views.login,
-        {'template_name': 'subjects/login.html'}, name="login"),
-    url(r'^accounts/logout/$', auth.views.logout,
-        {'template_name': 'subjects/logout.html'}, name="logout"),
+    path('admin/', admin.site.urls),
+    path('subjects/', include('subjects.urls')),
+
+    path('accounts/login/', LoginView.as_view(
+        template_name='subjects/login.html'), name="login"),
+
+    path('accounts/logout/', LogoutView.as_view(
+        template_name='subjects/logout.html'), name="logout"),
 ]
