@@ -1,7 +1,7 @@
 Django Subjects
 ===============
 
-[![Build Status](https://travis-ci.com/unt-libraries/django-subjects.svg?branch=master)](https://travis-ci.com/unt-libraries/django-subjects)
+[![Build Status](https://github.com/unt-libraries/django-subjects/actions/workflows/test.yml/badge.svg?branch=master)](https://github.com/unt-libraries/django-subjects/actions)
 
 
 About
@@ -13,7 +13,7 @@ This Django web application allows for the creation and maintenance of a catalog
 Requirements
 ------------
 
-* Python 3.5 - 3.7
+* Python 3.6 - 3.7
 * Django 2.2
 
 

@@ -6,8 +6,10 @@ Change Log
 
 * Upgraded to Django 2.2.
 * Dropped support for Django 1.11 and versions below it.
-* Dropped Python 2.7 support.
+* Dropped Python 2.7 and 3.5 support.
 * Bumped version of Markdown used.
+* Replaced Travis with GitHub Actions.
+* Added Python 3.8 and 3.9 testing.
 
 
 1.0.1
