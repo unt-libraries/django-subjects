@@ -1,4 +1,5 @@
 from django.db import DatabaseError
+from django.http import Http404
 
 
 class TraversalUtils:
@@ -63,8 +64,11 @@ class TraversalUtils:
 
         if subject_id != '' and subject_id is not None and subject_name == '':
             if subject_id != 0:
-                # Grabs the row object of the given node
-                current_subject = subject.objects.get(id__exact=subject_id)
+                try:
+                    # Grabs the row object of the given node
+                    current_subject = subject.objects.get(id__exact=subject_id)
+                except subject.DoesNotExist:
+                    raise Http404('The subject does not exist.') 
             # Grabs the children objects of the given node
             self.children_subjects = subject.objects.filter(
                 parent__exact=subject_id
