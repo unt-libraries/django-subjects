@@ -65,7 +65,7 @@ class TraversalUtils:
         if subject_id != '' and subject_id is not None and subject_name == '':
             if subject_id != 0:
                 # Grabs the row object of the given node
-                current_subject = get_object_or_404(subject, id__exact=subject_id) 
+                current_subject = get_object_or_404(subject, id__exact=subject_id)
             # Grabs the children objects of the given node
             self.children_subjects = subject.objects.filter(
                 parent__exact=subject_id
