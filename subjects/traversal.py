@@ -72,7 +72,7 @@ class TraversalUtils:
             ).order_by('name')
         elif subject_name != '' and subject_name is not None:
             # Grabs the row object of the given node
-            current_subject = subject.objects.get(name__exact=subject_name)
+            current_subject = get_object_or_404(subject, name__exact=subject_name)
             subject_id = current_subject.id
             # Grabs the children objects of the given node
             self.children_subjects = subject.objects.filter(
