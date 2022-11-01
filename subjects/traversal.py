@@ -1,4 +1,5 @@
 from django.db import DatabaseError
+from django.shortcuts import get_object_or_404
 
 
 class TraversalUtils:
@@ -64,14 +65,14 @@ class TraversalUtils:
         if subject_id != '' and subject_id is not None and subject_name == '':
             if subject_id != 0:
                 # Grabs the row object of the given node
-                current_subject = subject.objects.get(id__exact=subject_id)
+                current_subject = get_object_or_404(subject, id__exact=subject_id)
             # Grabs the children objects of the given node
             self.children_subjects = subject.objects.filter(
                 parent__exact=subject_id
             ).order_by('name')
         elif subject_name != '' and subject_name is not None:
             # Grabs the row object of the given node
-            current_subject = subject.objects.get(name__exact=subject_name)
+            current_subject = get_object_or_404(subject, name__exact=subject_name)
             subject_id = current_subject.id
             # Grabs the children objects of the given node
             self.children_subjects = subject.objects.filter(

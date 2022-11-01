@@ -46,6 +46,14 @@ class TestBrowseSubjects:
         assert sub in response.context['browse_nav']
         assert response.context['browse_string'] == sub.name
 
+    def test_browse_subject_with_nonexisting_id(self, client):
+        response = client.get(reverse('browse', kwargs={'sub_id': 1}))
+        assert response.status_code == 404
+
+    def test_browse_subject_with_nonexisting_name(self, client):
+        response = client.get(reverse('browse_sub_name', kwargs={'sub_name': 'testname'}))
+        assert response.status_code == 404
+
 
 @pytest.mark.django_db
 class TestSearchSubjects:
