@@ -11,7 +11,7 @@
 <br/>
 {% if search_results %}
 	<div class="subdiv">
-		Search Result{% ifnotequal results_len 1 %}s{% endifnotequal %}:
+		Search Result{% if results_len != 1 %}s{% endif %}:
 	</div>
 	{% for value in search_results %}
 		<div class="list">

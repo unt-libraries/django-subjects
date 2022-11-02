@@ -5,24 +5,24 @@
 {% block tab_delete %}In{% endblock %}
 
 {% block content %}
-	{% ifequal browse_list "Deleted" %}
-		{% ifnotequal browse_len 1 %}
+	{% if browse_list == "Deleted" %}
+		{% if browse_len != 1 %}
 			<div class="subdiv">Subject Structure (click previous subjects to go back)</div>
 		{% else %}
 			<div class="subdiv">Subject Structure (click Main to go back to the original browse structure)</div>
-		{% endifnotequal %}
+		{% endif %}
 		&nbsp;<span class="browse"><a href='{% url 'admin_main_delete' %}'>Main</a> ></span>
 		{% for value in browse_nav %}
 
 			{% if forloop.last %}
 
 				{% if child_error %}
-	 	    	{% ifequal child_error 1 %}
+	 	    	{% if child_error == 1 %}
 						<div class="subdiv">"<span style="color:#368237;">{{ value.name }}</span>" could not delete subject: subject has dependent subjects.</div>
-					{% endifequal %}
-					{% ifequal child_error 2 %}
+					{% endif %}
+					{% if child_error == 2 %}
     				<br/><br/> <div class="subdiv">"<span style="color:red;">{{ value.name }}</span>" Deleted.</div>
-					{% endifequal %}
+					{% endif %}
 				{% endif %}
 
 			{% else %}
@@ -32,11 +32,11 @@
 	{% else %}
 
 		{% if browse_nav %}
-			{% ifnotequal browse_len 1 %}
+			{% if browse_len != 1 %}
 				<div class="subdiv">Subject Structure (click previous subjects to go back)</div>
 			{% else %}
 				<div class="subdiv">Subject Structure (click Main to go back to the original browse structure)</div>
-			{% endifnotequal %}
+			{% endif %}
 			&nbsp;<span class="browse"><a href='{% url 'admin_main_delete' %}'>Main</a> ></span>
 			{% for value in browse_nav %}
 					{% if forloop.last %}
@@ -69,6 +69,6 @@
 		{% else %}
 			<div class='subdiv'>  There are no subcategories.</div>
 		{% endif %}
-	{% endifequal %}
+	{% endif %}
 
 {% endblock %}
