@@ -59,4 +59,4 @@ TIME_ZONE = 'UTC'
 
 USE_I18N = True
 
-STATIC_URL = 'static/'
+STATIC_URL = '/static/'
