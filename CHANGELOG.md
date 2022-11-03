@@ -1,6 +1,15 @@
 Change Log
 ==========
 
+2.1.0
+-----
+
+* Upgraded to Django 4.1.
+* Dropped support for Django 2.2.
+* Dropped support for Python 3.6-3.7.
+* Added Python 3.10 support.
+
+
 2.0.0
 -----
 
