@@ -3,7 +3,7 @@ from setuptools import setup, find_packages
 
 setup(
     name='django-subjects',
-    version='2.1.0',
+    version='3.0.0',
     packages=find_packages(exclude=['tests']),
     include_package_data=True,
     package_data={
