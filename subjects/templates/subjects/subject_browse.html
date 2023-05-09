@@ -13,11 +13,11 @@
 	{% endif %}
 
 	{% if browse_nav %}
-		{% ifnotequal browse_len 1 %}
+		{% if browse_len != 1 %}
 			<div class="subdiv">Subject Structure (click previous subjects to go back)</div>
 		{% else %}
 			<div class="subdiv">Subject Structure (click Main to go back to the original browse structure)</div>
-		{% endifnotequal %}
+		{% endif %}
 		&nbsp;<span class="browse"><a href='{% url 'main_browse' %}'>Main</a> ></span>
 		{% for value in browse_nav %}
 				{% if forloop.last %}
