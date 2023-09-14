@@ -1,6 +1,13 @@
 Change Log
 ==========
 
+
+4.0.0
+-----
+
+* Upgraded to Django 4.2.
+
+
 3.0.0
 -----
 

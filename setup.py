@@ -3,7 +3,7 @@ from setuptools import setup, find_packages
 
 setup(
     name='django-subjects',
-    version='3.0.0',
+    version='4.0.0',
     packages=find_packages(exclude=['tests']),
     include_package_data=True,
     package_data={
@@ -35,7 +35,7 @@ setup(
     classifiers=[
         'Natural Language :: English',
         'Environment :: Web Environment',
-        'Framework :: Django :: 4.1',
+        'Framework :: Django :: 4.2',
         'Programming Language :: Python',
         'Programming Language :: Python :: 3',
         'Programming Language :: Python :: 3.8',
