@@ -69,6 +69,8 @@ class SearchForm(forms.Form):
 def search_subjects(request):
     # create the traversal object
     traversal = TraversalUtils()
+    search_item = ''
+    query_list = []
 
     if request.method == 'GET':
         # get the form request data using the GET method
@@ -81,8 +83,6 @@ def search_subjects(request):
             search_item = clean_data['q']
 
             if search_item is not None and search_item != '':
-                query_list = []
-
                 # for all subjects returned using the icontains filter, create a hierarchical
                 # structured list and also a hyphenated string with that structure
                 for query_result in Subject.objects.filter(name__icontains=search_item):
@@ -90,12 +90,7 @@ def search_subjects(request):
                     query_list.append(traversal.subject_dict)
 
                 query_list = sorted(query_list, key=itemgetter('hyphenated'))
-            else:
-                query_list = []
-        else:
-            query_list = []
     else:
-        query_list = []
         # if the form doesn't exist yet, create it
         form = SearchForm()
 
