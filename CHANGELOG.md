@@ -1,6 +1,11 @@
 Change Log
 ==========
 
+4.0.1
+-----
+
+* Fix bug where HEAD or other non-GET requests would cause server error in search.
+
 
 4.0.0
 -----
