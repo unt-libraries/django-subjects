@@ -82,7 +82,7 @@ def search_subjects(request):
             clean_data = form.cleaned_data
             search_item = clean_data['q']
 
-            if search_item is not None and search_item != '':
+            if search_item:
                 # for all subjects returned using the icontains filter, create a hierarchical
                 # structured list and also a hyphenated string with that structure
                 for query_result in Subject.objects.filter(name__icontains=search_item):
