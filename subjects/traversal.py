@@ -51,9 +51,9 @@ class TraversalUtils:
             self.structured_list.append(current_parent)
             # Create a hierarchical string, denoted with hyphens
             if self.structured_string == '':
-                self.structured_string = "%s" % (current_parent.name)
+                self.structured_string = current_parent.name
             else:
-                self.structured_string = "%s - %s" % (self.structured_string, current_parent.name)
+                self.structured_string = f'{self.structured_string} - {current_parent.name}'
 
         self.subject_dict = {
             'hyphenated': self.structured_string,
