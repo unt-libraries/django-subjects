@@ -10,7 +10,7 @@ version = "5.0.0"
 license = "BSD-3-Clause"
 license-files = ["LICENSE.txt"]
 keywords = ["django", "app", "subjects", "UNT"]
-requires-python = ">=3.12,<4.0"
+requires-python = ">=3.12,<3.15"
 authors = [
   { name = "University of North Texas Libraries", email = "mark.phillips@unt.edu" }
 ]
