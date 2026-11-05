@@ -1,3 +1,0 @@
--rrequirements/requirements-dev.txt
--rrequirements/requirements-base.txt
--rrequirements/requirements-test.txt

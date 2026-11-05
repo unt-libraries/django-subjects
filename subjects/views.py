@@ -111,11 +111,10 @@ def about_subjects(request):
     about_filepath = os.path.join(app_path, 'about_markdown.txt')
     # Open the file
     try:
-        f = open(about_filepath, "r")
-    except IOError:
-        raise IOError("Couldn't open about_markdown.txt")
-    # Get the file data
-    about_markdown = f.read()
+        with open(about_filepath, "r") as f:
+            about_markdown = f.read()
+    except OSError:
+        raise OSError("Couldn't open about_markdown.txt")
 
     return render(
         request,

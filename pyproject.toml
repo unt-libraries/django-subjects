@@ -1,0 +1,73 @@
+[build-system]
+requires = ["setuptools>=68", "wheel"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "django-subjects"
+description = "Creates and maintains a collection of subjects."
+readme = "README.md"
+version = "5.0.0"
+license = "BSD-3-Clause"
+license-files = ["LICENSE.txt"]
+keywords = ["django", "app", "subjects", "UNT"]
+requires-python = ">=3.12,<3.15"
+authors = [
+  { name = "University of North Texas Libraries", email = "mark.phillips@unt.edu" }
+]
+classifiers = [
+    "Environment :: Web Environment",
+    "Framework :: Django :: 6.1",
+    "Natural Language :: English",
+    "Programming Language :: Python",
+    "Programming Language :: Python :: 3.12",
+    "Programming Language :: Python :: 3.13",
+    "Programming Language :: Python :: 3.14",
+    "Topic :: Internet :: WWW/HTTP :: WSGI :: Application"
+]
+dependencies = [
+    "Django~=6.1.0",
+    "markdown~=3.4",
+]
+
+[project.urls]
+Homepage = "https://github.com/unt-libraries/django-subjects"
+Repository = "https://github.com/unt-libraries/django-subjects.git"
+
+
+[project.optional-dependencies]
+test = [
+    "pytest>=7.1.0",
+    "pytest-django>=4.6.2",
+    "factory-boy",
+    "ruff~=0.15.1"
+]
+
+[tool.pytest.ini_options]
+DJANGO_SETTINGS_MODULE = "tests.settings"
+
+[tool.ruff]
+line-length = 99
+extend-exclude = ["migrations"]
+
+[tool.ruff.format]
+quote-style = "single"
+
+[tool.ruff.lint]
+select = ["E", "F", "W"]
+
+[tool.tox]
+legacy_tox_ini = """
+    [tox]
+    envlist =
+        py3{12,13,14}
+        py314-ruff
+    skip_missing_interpreters = true
+
+    [testenv]
+    extras = 
+        test
+    commands = pytest
+
+    [testenv:py314-ruff]
+    commands = ruff check .
+"""

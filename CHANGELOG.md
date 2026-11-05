@@ -1,6 +1,14 @@
 Change Log
 ==========
 
+5.0.0
+-----
+* Upgraded to Django 6.1.
+* Added support for Python 3.12 - 3.14.
+* Dropped support for Django 4.2.
+* Dropped support for Python 3.11 and below.
+* Migrated from setup.py to pyproject.toml.
+
 4.0.1
 -----
 

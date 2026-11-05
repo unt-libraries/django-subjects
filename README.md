@@ -13,8 +13,8 @@ This Django web application allows for the creation and maintenance of a catalog
 Requirements
 ------------
 
-* Python 3.8 - 3.10
-* Django 4.2
+* Python 3.12 - 3.14
+* Django 6.1
 
 
 Installation
@@ -66,7 +66,7 @@ you can do so by following these instructions, which will run the app with the D
 
 3.  Install the requirements (preferably in a virtual environment):
 
-        $ pip install -r requirements.txt
+        $ pip install .
 
 4.  Navigate to the root of the project directory and run the migrations:
 
@@ -92,21 +92,24 @@ Testing
 
 To manually run the tests with your current version of Python (system or virtual environment):
 
-1.  Follow steps 1-3 of Developing
+1. Install test dependencies:
 
-2.  Run the tests:
+        $ pip install .'[test]'
+
+2. Run the tests and linter:
 
         $ pytest
+        $ ruff check .
 
-Alternatively, you can use tox to run the tests in specific environments, along with the flake8 style checker:
+Alternatively, you can use tox to run the tests in specific environments, along with ruff:
 
-1.  Follow steps 1-2 of Developing
-
-2.  Install tox on your system:
+1.  Install tox on your system or virtual environment:
 
         $ sudo apt-get install tox
+        # or
+        $ pip install tox
 
-3.  Run the tox test suite:
+2.  Run the tox test suite:
 
         $ tox
 
@@ -127,3 +130,4 @@ Contributors
 * [Gio Gottardi](https://github.com/somexpert)
 * [Madhulika Bayyavarapu](https://github.com/madhulika95b)
 * [Gracie Flores-Hays](https://github.com/gracieflores)
+* [Trey Clark](https://github.com/clarktr1)

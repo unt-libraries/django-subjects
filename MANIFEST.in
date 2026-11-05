@@ -1,0 +1,4 @@
+CHANGELOG.md
+recursive-include subjects/templates *
+recursive-include subjects/static *
+include subjects/about_markdown.txt
